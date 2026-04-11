@@ -36,11 +36,14 @@ By utilizing the "CraftingRecipe" ScriptableObject, we treat recipes purely as d
 3. **Assign Items:** Add your required ingredients (e.g., 2x Wood, 1x Iron) and set your result item (e.g., 1x Iron Sword).
 4. **Setup the Manager:** Attach the "CraftingManager.cs" script to a GameObject in your scene and drag your "InventoryManager" component into its reference slot.
 5. **Craft via Code:** Call the craft method from any script or UI Button event:
-"""csharp
+
+"""
 craftingManager.CraftItem(myRecipeAsset);
 """
-6. **Check Craftability:** If you want to gray-out UI buttons for items the player can't afford, simply check:
-"""csharp
+
+7. **Check Craftability:** If you want to gray-out UI buttons for items the player can't afford, simply check:
+
+"""
 bool canAfford = craftingManager.CanCraft(myRecipeAsset);
 """
 
