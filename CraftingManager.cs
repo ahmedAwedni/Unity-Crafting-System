@@ -1,5 +1,6 @@
 // 2. CraftingManager.cs
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CraftingManager : MonoBehaviour
@@ -10,6 +11,10 @@ public class CraftingManager : MonoBehaviour
     [Header("System References")]
     [Tooltip("Link your existing InventoryManager here.")]
     public InventoryManager inventoryManager;
+
+    [Header("Recipe Database (Optional)")]
+    [Tooltip("Store all game recipes here so UIs can filter them by category.")]
+    public List<CraftingRecipe> allRecipes = new List<CraftingRecipe>();
 
     // Checks if the player has all required ingredients in their inventory
     public bool CanCraft(CraftingRecipe recipe)
@@ -70,5 +75,13 @@ public class CraftingManager : MonoBehaviour
             Debug.LogWarning($"Missing ingredients to craft: {recipe.recipeName}");
             OnCraftingFailed?.Invoke(recipe);
         }
+    }
+
+    /// Utility method to get all recipes belonging to a specific category.
+    /// Perfect for populating a UI window when interacting with a specific station.
+    
+    public List<CraftingRecipe> GetRecipesByCategory(CraftingCategory category)
+    {
+        return allRecipes.FindAll(recipe => recipe.category == category);
     }
 }
